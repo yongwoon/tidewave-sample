@@ -1,0 +1,60 @@
+<% content_for :title, "AI Chat" %>
+
+<div class="chat-container" data-controller="chat">
+  <div class="chat-header">
+    <h1>🤖 AI Chat Assistant</h1>
+    <p>Chat with your AI assistant</p>
+  </div>
+
+  <div class="chat-messages" id="chatMessages" data-chat-target="messages">
+    <% if @chats.any? %>
+      <% @chats.each do |chat| %>
+        <div class="message <%= chat.role %>">
+          <div class="message-avatar">
+            <%= chat.role == 'user' ? '👤' : '🤖' %>
+          </div>
+          <div class="message-content">
+            <div class="message-text"><%= simple_format(h(chat.message)) %></div>
+            <div class="message-time"><%= time_ago_in_words(chat.created_at) %> ago</div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="welcome-message">
+        <div class="message assistant">
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            <div class="message-text">
+              Hello! I'm your AI chat assistant. How can I help you today?
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="chat-input">
+    <%= form_with model: @chat, url: chats_path, local: true, class: "chat-form", data: { chat_target: "form", action: "submit->chat#beforeSubmit" } do |form| %>
+      <div class="input-group">
+        <%= form.text_area :message, 
+            placeholder: "Type your message here...", 
+            class: "message-input",
+            rows: 1,
+            required: true,
+            data: { 
+              controller: "auto-resize",
+              chat_target: "input",
+              action: "input->auto-resize#resize keydown->chat#handleKeydown"
+            } %>
+        <%= form.submit "Send", class: "send-button" %>
+      </div>
+      <% if @chat.errors.any? %>
+        <div class="error-messages">
+          <% @chat.errors.full_messages.each do |message| %>
+            <div class="error"><%= message %></div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
