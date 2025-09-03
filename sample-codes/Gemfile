@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# 必要最小限のGems（外部依存なし）
+gem 'ferrum', '~> 0.14'     # Chrome/Chromiumブラウザ制御（内蔵PDF機能）
+gem 'nokogiri', '~> 1.15'   # HTML/XML解析
+
+# 開発用（オプション）
+group :development do
+  gem 'pry', '~> 0.14'      # デバッグ用
+end
