@@ -49,13 +49,15 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-
-  gem "tidewave"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Tidewave - AI-powered development assistant
+  # Only in development due to config.enable_reloading requirement
+  gem "tidewave"
 end
 
 group :test do
