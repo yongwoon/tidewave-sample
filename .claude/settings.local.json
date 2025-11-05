@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run view:*)",
+      "Bash(bundle install:*)",
+      "Bash(RAILS_ENV=test bin/rails db:test:prepare:*)",
+      "Bash(bin/rails db:migrate:*)",
+      "Bash(bin/rails test:*)",
+      "Bash(bin/rails test:system:*)",
+      "Bash(bin/brakeman:*)",
+      "Bash(bin/rubocop:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh pr comment:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
